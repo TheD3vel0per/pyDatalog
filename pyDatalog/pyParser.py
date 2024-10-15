@@ -493,6 +493,8 @@ class Literal(object):
                             
         for term in self.terms:
             for var in term._pyD_variables().keys():
+                if not hasattr(Thread_storage, 'variables'):
+                    Thread_storage.variables = set([])
                 Thread_storage.variables.add(var) #call update the list of variables since the last clause
             
         tbl = [a._pyD_lua for a in self.terms]
